@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import { SiteHeader, SiteFooter } from "../components/site-chrome";
 import { CartProvider } from "../lib/cart";
+import { AuthProvider } from "../lib/auth";
 import { Toaster } from "../components/ui/sonner";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -123,12 +124,14 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <CartProvider>
-        <SiteHeader />
-        <Outlet />
-        <SiteFooter />
-        <Toaster />
-      </CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <SiteHeader />
+          <Outlet />
+          <SiteFooter />
+          <Toaster />
+        </CartProvider>
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

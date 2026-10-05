@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { ShoppingBag, ShieldCheck, Truck, RotateCcw, BadgeIndianRupee } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { useAuth } from "@/lib/auth";
 
 export function SiteHeader() {
   const { count } = useCart();
+  const { user, loading, signOut } = useAuth();
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
       <div className="bg-primary py-2 text-center text-primary-foreground eyebrow">
@@ -16,6 +18,12 @@ export function SiteHeader() {
         <nav className="flex items-center gap-8 eyebrow">
           <Link to="/shop" activeProps={{ className: "text-accent" }}>Shop</Link>
           <Link to="/about" activeProps={{ className: "text-accent" }}>About</Link>
+          {!loading &&
+            (user ? (
+              <button onClick={() => signOut()} title={user.email ?? undefined}>Log out</button>
+            ) : (
+              <Link to="/login" activeProps={{ className: "text-accent" }}>Log in</Link>
+            ))}
           <Link to="/cart" className="relative flex items-center gap-2" aria-label="Bag">
             <ShoppingBag className="h-5 w-5" />
             {count > 0 && (
