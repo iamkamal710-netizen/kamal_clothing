@@ -11,11 +11,11 @@ export function SiteHeader() {
       <div className="bg-primary py-2 text-center text-primary-foreground eyebrow">
         Festive learning sale · Every item just ₹1 · Free delivery across India
       </div>
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
-        <Link to="/" className="font-display text-2xl tracking-wide">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 sm:px-6 sm:py-5">
+        <Link to="/" className="whitespace-nowrap font-display text-2xl tracking-wide">
           Maison Ardent
         </Link>
-        <nav className="flex items-center gap-8 eyebrow">
+        <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 whitespace-nowrap eyebrow sm:gap-8">
           <Link to="/shop" activeProps={{ className: "text-accent" }}>Shop</Link>
           <Link to="/about" activeProps={{ className: "text-accent" }}>About</Link>
           {!loading &&
