@@ -8,6 +8,8 @@ type Ctx = {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<Result>;
   signUp: (email: string, password: string, name: string) => Promise<Result>;
+  sendLoginCode: (email: string) => Promise<Result>;
+  verifyCode: (email: string, code: string, type: "signup" | "email") => Promise<Result>;
   signOut: () => Promise<void>;
 };
 
@@ -53,6 +55,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (error) return { error: error.message };
       // No session means the project requires email confirmation before first sign-in.
       return { error: null, needsConfirmation: !data.session };
+    },
+    sendLoginCode: async (email) => {
+      if (!supabaseConfigured) return notConfigured;
+      const { error } = await supabase.auth.signInWithOtp({ email, options: { shouldCreateUser: false } });
+      return { error: error?.message ?? null };
+    },
+    verifyCode: async (email, code, type) => {
+      if (!supabaseConfigured) return notConfigured;
+      const { error } = await supabase.auth.verifyOtp({ email, token: code, type });
+      return { error: error?.message ?? null };
     },
     signOut: async () => {
       await supabase.auth.signOut();
