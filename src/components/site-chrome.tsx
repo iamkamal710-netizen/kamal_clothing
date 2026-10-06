@@ -22,7 +22,10 @@ export function SiteHeader() {
             (user ? (
               <button onClick={() => signOut()} title={user.email ?? undefined}>Log out</button>
             ) : (
-              <Link to="/login" activeProps={{ className: "text-accent" }}>Log in</Link>
+              <>
+                <Link to="/login" activeProps={{ className: "text-accent" }}>Log in</Link>
+                <Link to="/signup" activeProps={{ className: "text-accent" }}>Sign up</Link>
+              </>
             ))}
           <Link to="/cart" className="relative flex items-center gap-2" aria-label="Bag">
             <ShoppingBag className="h-5 w-5" />

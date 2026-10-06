@@ -34,7 +34,7 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
   return (
     <main className="mx-auto max-w-md px-6 pt-20">
       <p className="eyebrow text-accent">{isSignup ? "Join Maison Ardent" : "Welcome back"}</p>
-      <h1 className="mt-3 text-5xl">{isSignup ? "Create account" : "Log in"}</h1>
+      <h1 className="mt-3 text-5xl">{isSignup ? "Sign up" : "Log in"}</h1>
       <form onSubmit={onSubmit} className="mt-10 space-y-5">
         {isSignup && (
           <div>
@@ -61,13 +61,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
         {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
         {notice && <p role="status" className="text-sm text-accent">{notice}</p>}
         <button type="submit" disabled={busy} className="eyebrow w-full bg-primary py-4 text-primary-foreground disabled:opacity-60">
-          {busy ? "Please wait…" : isSignup ? "Create account" : "Log in"}
+          {busy ? "Please wait…" : isSignup ? "Sign up" : "Log in"}
         </button>
       </form>
       <p className="mt-6 text-sm text-muted-foreground">
         {isSignup ? "Already have an account? " : "New here? "}
         <Link to={isSignup ? "/login" : "/signup"} className="text-foreground underline underline-offset-4">
-          {isSignup ? "Log in" : "Create an account"}
+          {isSignup ? "Log in" : "Sign up"}
         </Link>
       </p>
     </main>
