@@ -10,7 +10,8 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
-import { SiteHeader, SiteFooter, CallButton } from "../components/site-chrome";
+import { SiteHeader, SiteFooter } from "../components/site-chrome";
+import { VoiceAssistant } from "../components/voice-assistant";
 import { CartProvider } from "../lib/cart";
 import { AuthProvider } from "../lib/auth";
 import { Toaster } from "../components/ui/sonner";
@@ -129,7 +130,7 @@ function RootComponent() {
           <SiteHeader />
           <Outlet />
           <SiteFooter />
-          <CallButton />
+          <VoiceAssistant />
           <Toaster />
         </CartProvider>
       </AuthProvider>

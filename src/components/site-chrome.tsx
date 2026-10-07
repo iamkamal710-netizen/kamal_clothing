@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, ShieldCheck, Truck, RotateCcw, BadgeIndianRupee, Phone } from "lucide-react";
+import { ShoppingBag, ShieldCheck, Truck, RotateCcw, BadgeIndianRupee } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
 
@@ -44,18 +44,6 @@ export function SiteHeader() {
 // Voice assistant (built on Vapi) that answers customer calls.
 export const SUPPORT_PHONE = "+16514272109";
 export const SUPPORT_PHONE_LABEL = "+1 (651) 427-2109";
-
-export function CallButton() {
-  return (
-    <a
-      href={`tel:${SUPPORT_PHONE}`}
-      className="eyebrow fixed bottom-5 right-5 z-30 flex items-center gap-2 bg-primary px-5 py-4 text-primary-foreground shadow-lg transition-opacity hover:opacity-90"
-      aria-label={`Call our assistant at ${SUPPORT_PHONE_LABEL}`}
-    >
-      <Phone className="h-4 w-4" /> Talk to us
-    </a>
-  );
-}
 
 const trust = [
   { icon: ShieldCheck, t: "100% secure UPI payments" },
