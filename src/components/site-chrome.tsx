@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShoppingBag, ShieldCheck, Truck, RotateCcw, BadgeIndianRupee } from "lucide-react";
+import { ShoppingBag, ShieldCheck, Truck, RotateCcw, BadgeIndianRupee, Phone } from "lucide-react";
 import { useCart } from "@/lib/cart";
 import { useAuth } from "@/lib/auth";
 
@@ -41,6 +41,22 @@ export function SiteHeader() {
   );
 }
 
+// Voice assistant (built on Vapi) that answers customer calls.
+export const SUPPORT_PHONE = "+16514272109";
+export const SUPPORT_PHONE_LABEL = "+1 (651) 427-2109";
+
+export function CallButton() {
+  return (
+    <a
+      href={`tel:${SUPPORT_PHONE}`}
+      className="eyebrow fixed bottom-5 right-5 z-30 flex items-center gap-2 bg-primary px-5 py-4 text-primary-foreground shadow-lg transition-opacity hover:opacity-90"
+      aria-label={`Call our assistant at ${SUPPORT_PHONE_LABEL}`}
+    >
+      <Phone className="h-4 w-4" /> Talk to us
+    </a>
+  );
+}
+
 const trust = [
   { icon: ShieldCheck, t: "100% secure UPI payments" },
   { icon: Truck, t: "Free delivery across India" },
@@ -59,7 +75,13 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="mx-auto flex max-w-7xl flex-col gap-4 border-t border-border px-6 py-8 md:flex-row md:justify-between">
-        <p className="font-display text-xl">Maison Ardent</p>
+        <div>
+          <p className="font-display text-xl">Maison Ardent</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Questions about an order? Call our 24/7 assistant:{" "}
+            <a href={`tel:${SUPPORT_PHONE}`} className="text-foreground underline underline-offset-4">{SUPPORT_PHONE_LABEL}</a>
+          </p>
+        </div>
         <p className="eyebrow text-muted-foreground">Prices in INR, incl. of all taxes · Learning demo store</p>
       </div>
     </footer>
