@@ -52,8 +52,8 @@ export function SiteHeader() {
 }
 
 // Voice assistant (built on Vapi) that answers customer calls.
-export const SUPPORT_PHONE = "+16514272109";
-export const SUPPORT_PHONE_LABEL = "+1 (651) 427-2109";
+export const SUPPORT_PHONE = "87895634";
+export const SUPPORT_PHONE_LABEL = "87895634";
 
 const trust = [
   { icon: ShieldCheck, t: "100% secure UPI payments" },
