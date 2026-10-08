@@ -24,10 +24,13 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       return;
     }
     setBusy(true);
-    const res = isSignup ? await signUp(email.trim(), password, name.trim()) : await signIn(email.trim(), password);
+    const res = isSignup
+      ? await signUp(email.trim(), password, name.trim())
+      : await signIn(email.trim(), password);
     setBusy(false);
     if (res.error) return setError(res.error);
-    if (res.needsConfirmation) return setNotice(`We sent a confirmation link to ${email.trim()}. Open it, then log in.`);
+    if (res.needsConfirmation)
+      return setNotice(`We sent a confirmation link to ${email.trim()}. Open it, then log in.`);
     navigate({ to: "/" });
   }
 
@@ -38,16 +41,37 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
       <form onSubmit={onSubmit} className="mt-10 space-y-5">
         {isSignup && (
           <div>
-            <label htmlFor="name" className="eyebrow">Full name</label>
-            <input id="name" className={`${field} mt-2`} value={name} onChange={(e) => setName(e.target.value)} autoComplete="name" required />
+            <label htmlFor="name" className="eyebrow">
+              Full name
+            </label>
+            <input
+              id="name"
+              className={`${field} mt-2`}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              autoComplete="name"
+              required
+            />
           </div>
         )}
         <div>
-          <label htmlFor="email" className="eyebrow">Email</label>
-          <input id="email" type="email" className={`${field} mt-2`} value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="email" required />
+          <label htmlFor="email" className="eyebrow">
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            className={`${field} mt-2`}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
+            required
+          />
         </div>
         <div>
-          <label htmlFor="password" className="eyebrow">Password</label>
+          <label htmlFor="password" className="eyebrow">
+            Password
+          </label>
           <input
             id="password"
             type="password"
@@ -58,15 +82,30 @@ export function AuthForm({ mode }: { mode: "login" | "signup" }) {
             required
           />
         </div>
-        {error && <p role="alert" className="text-sm text-destructive">{error}</p>}
-        {notice && <p role="status" className="text-sm text-accent">{notice}</p>}
-        <button type="submit" disabled={busy} className="eyebrow w-full bg-primary py-4 text-primary-foreground disabled:opacity-60">
+        {error && (
+          <p role="alert" className="text-sm text-destructive">
+            {error}
+          </p>
+        )}
+        {notice && (
+          <p role="status" className="text-sm text-accent">
+            {notice}
+          </p>
+        )}
+        <button
+          type="submit"
+          disabled={busy}
+          className="eyebrow w-full bg-primary py-4 text-primary-foreground disabled:opacity-60"
+        >
           {busy ? "Please wait…" : isSignup ? "Sign up" : "Log in"}
         </button>
       </form>
       <p className="mt-6 text-sm text-muted-foreground">
         {isSignup ? "Already have an account? " : "New here? "}
-        <Link to={isSignup ? "/login" : "/signup"} className="text-foreground underline underline-offset-4">
+        <Link
+          to={isSignup ? "/login" : "/signup"}
+          className="text-foreground underline underline-offset-4"
+        >
           {isSignup ? "Log in" : "Sign up"}
         </Link>
       </p>

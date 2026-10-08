@@ -8,7 +8,9 @@ export function ProductCard({ p }: { p: Product }) {
   return (
     <article className="group flex flex-col">
       <div className="relative overflow-hidden bg-card">
-        <span className="eyebrow absolute left-3 top-3 z-10 bg-accent px-2 py-1 text-accent-foreground">{off}% off</span>
+        <span className="eyebrow absolute left-3 top-3 z-10 bg-accent px-2 py-1 text-accent-foreground">
+          {off}% off
+        </span>
         <img
           src={p.image}
           alt={p.name}

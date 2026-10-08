@@ -7,4 +7,7 @@ export const supabaseConfigured = Boolean(url && anonKey);
 
 // Falls back to a placeholder so the app still renders when .env is missing;
 // auth calls then fail with a readable error instead of crashing at import time.
-export const supabase = createClient(url ?? "http://localhost:54321", anonKey ?? "missing-anon-key");
+export const supabase = createClient(
+  url ?? "http://localhost:54321",
+  anonKey ?? "missing-anon-key",
+);

@@ -16,15 +16,25 @@ export function SiteHeader() {
           Maison Ardent
         </Link>
         <nav className="flex flex-wrap items-center gap-x-5 gap-y-2 whitespace-nowrap eyebrow sm:gap-8">
-          <Link to="/shop" activeProps={{ className: "text-accent" }}>Shop</Link>
-          <Link to="/about" activeProps={{ className: "text-accent" }}>About</Link>
+          <Link to="/shop" activeProps={{ className: "text-accent" }}>
+            Shop
+          </Link>
+          <Link to="/about" activeProps={{ className: "text-accent" }}>
+            About
+          </Link>
           {!loading &&
             (user ? (
-              <button onClick={() => signOut()} title={user.email ?? undefined}>Log out</button>
+              <button onClick={() => signOut()} title={user.email ?? undefined}>
+                Log out
+              </button>
             ) : (
               <>
-                <Link to="/login" activeProps={{ className: "text-accent" }}>Log in</Link>
-                <Link to="/signup" activeProps={{ className: "text-accent" }}>Sign up</Link>
+                <Link to="/login" activeProps={{ className: "text-accent" }}>
+                  Log in
+                </Link>
+                <Link to="/signup" activeProps={{ className: "text-accent" }}>
+                  Sign up
+                </Link>
               </>
             ))}
           <Link to="/cart" className="relative flex items-center gap-2" aria-label="Bag">
@@ -67,10 +77,17 @@ export function SiteFooter() {
           <p className="font-display text-xl">Maison Ardent</p>
           <p className="mt-2 text-sm text-muted-foreground">
             Questions about an order? Call our 24/7 assistant:{" "}
-            <a href={`tel:${SUPPORT_PHONE}`} className="text-foreground underline underline-offset-4">{SUPPORT_PHONE_LABEL}</a>
+            <a
+              href={`tel:${SUPPORT_PHONE}`}
+              className="text-foreground underline underline-offset-4"
+            >
+              {SUPPORT_PHONE_LABEL}
+            </a>
           </p>
         </div>
-        <p className="eyebrow text-muted-foreground">Prices in INR, incl. of all taxes · Learning demo store</p>
+        <p className="eyebrow text-muted-foreground">
+          Prices in INR, incl. of all taxes · Learning demo store
+        </p>
       </div>
     </footer>
   );

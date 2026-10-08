@@ -13,7 +13,9 @@ type Ctx = {
 
 const AuthCtx = createContext<Ctx | null>(null);
 
-const notConfigured: Result = { error: "Sign-in is not configured. Add the Supabase keys to .env." };
+const notConfigured: Result = {
+  error: "Sign-in is not configured. Add the Supabase keys to .env.",
+};
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);

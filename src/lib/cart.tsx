@@ -21,11 +21,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     try {
       setLines(JSON.parse(localStorage.getItem("cart") || "[]"));
-    } catch {}
+    } catch {
+      // corrupt or unavailable localStorage: start with an empty cart
+    }
   }, []);
   const save = (l: Line[]) => {
     setLines(l);
-    localStorage.setItem("cart", JSON.stringify(l));
+    try {
+      localStorage.setItem("cart", JSON.stringify(l));
+    } catch {
+      // storage full or blocked (e.g. private mode): keep the in-memory cart working
+    }
   };
   const full = lines
     .map((l) => ({ ...l, product: products.find((p) => p.name === l.name)! }))
@@ -36,9 +42,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     total: full.reduce((a, l) => a + l.qty * l.product.price, 0),
     add: (name) => {
       const ex = lines.find((l) => l.name === name);
-      save(ex ? lines.map((l) => (l.name === name ? { ...l, qty: l.qty + 1 } : l)) : [...lines, { name, qty: 1 }]);
+      save(
+        ex
+          ? lines.map((l) => (l.name === name ? { ...l, qty: l.qty + 1 } : l))
+          : [...lines, { name, qty: 1 }],
+      );
     },
-    setQty: (name, qty) => save(qty <= 0 ? lines.filter((l) => l.name !== name) : lines.map((l) => (l.name === name ? { ...l, qty } : l))),
+    setQty: (name, qty) =>
+      save(
+        qty <= 0
+          ? lines.filter((l) => l.name !== name)
+          : lines.map((l) => (l.name === name ? { ...l, qty } : l)),
+      ),
     clear: () => save([]),
   };
   return <CartCtx.Provider value={value}>{children}</CartCtx.Provider>;

@@ -1,1 +1,0 @@
-import{p as e}from"./index-C0dcPAqk.js";import{t}from"./auth-form-Dwvw1A-o.js";var n=e(),r=()=>(0,n.jsx)(t,{mode:`login`});export{r as component};
